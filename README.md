@@ -3,11 +3,11 @@
 *NOTE: `kc` is my alias for `kubectl`*
 
 ## Prepare proto files
-- see the [proto/](./proto/), then execute `make regen-go-external`
+- see the [proto/](./proto/), then execute `make regen-all` to populate pb files (Go and JS)
 
 ## Prepare backend
 - see [server/](./server/)
-- use `make build` to build and publish docker image
+- use `make build` to build and publish docker image (or you can just pull the image `hjcian/emoji`)
 
 ## Prepare `minikube`
 - execute [`minikube start`](https://minikube.sigs.k8s.io/docs/start/)
@@ -46,7 +46,7 @@ cd istio-1.14.1/
   🏃  Starting tunnel for service istio-ingressgateway.
   Password: *****
   ```
-- then test the backend using port 80 should still work
+- then test the backend at another terminal by assigned target port:80
   ```bash
   $ go run go-client/main.go -p 80
   2022/07/09 21:53:16 server says: I like 🍕  and 🍣 !
