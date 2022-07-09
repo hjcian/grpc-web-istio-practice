@@ -1,0 +1,12 @@
+buf/
+k8s/
+proto/
+client/
+web-pb/
+
+node_modules/
+package.json
+yarn.lock
+Makefile
+README.md
+.gitignore
