@@ -114,3 +114,5 @@ cd istio-1.14.1/
   - NOTE: istio configuration (`EnvoyFilter`) described in article is outdated, but other concepts and explanations are still useful
 - https://jackieli.dev/posts/grpc-web-istio/
   - NOTE: up-to-date `EnvoyFilter` configuration
+- https://github.com/mmitou/grpc-web-demo/blob/master/docs/en/README.md
+  - this demo show that only use [protocol selection](https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/) by assigning `grpc-web` is enough to configure the backend server receives the grpc-web requests
