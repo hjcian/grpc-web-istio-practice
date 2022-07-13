@@ -2,14 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend
-  namespace: default
+  namespace: exp
   labels:
     app: backend
 spec:
   ports:
-  - name: grpc-port
-    port: 9000
-    appProtocol: grpc
+    - name: grpc-web # istio refers this value as protocol
+      port: 9000
   selector:
     app: backend
 ---
@@ -17,6 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: exp
 spec:
   replicas: 1
   selector:
@@ -32,7 +32,7 @@ spec:
           image: hjcian/emoji:latest
           imagePullPolicy: Always
           ports:
-          - containerPort: 9000
+            - containerPort: 9000
           resources:
             limits:
               cpu: 1000m

@@ -7,6 +7,8 @@ import (
 
 	proto "emoji-server/server/go-pb"
 
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	emoji "gopkg.in/kyokomi/emoji.v1"
@@ -31,11 +33,24 @@ func main() {
 	log.Printf("listening on %s", lis.Addr())
 
 	// register the EmojiService implementation with the gRPC server
-	s := grpc.NewServer()
+	s := grpc.NewServer(
+		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+			UnaryTraceLoggingInterceptor(),
+		)),
+	)
+
 	proto.RegisterEmojiServiceServer(s, &server{})
 	reflection.Register(s)
 
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
+	}
+}
+
+func UnaryTraceLoggingInterceptor() grpc.UnaryServerInterceptor {
+	logger, _ := zap.NewProduction()
+	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+		logger.Info("calling", zap.String("method", info.FullMethod))
+		return handler(ctx, req)
 	}
 }

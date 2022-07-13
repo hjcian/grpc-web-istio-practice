@@ -1,7 +1,7 @@
 _EXTERNAL_BUILD=build.external
 _EXTERNAL_GO_PB=server/go-pb
 _WEB_BUILD=build.web
-_WEB_JS_PB=client/web-pb
+_WEB_JS_PB=src/web-pb
 
 clean-go-external:
 	@rm -rf \
@@ -43,7 +43,7 @@ run:
 	go run server/main.go
 
 build:
-	docker build -t hjcian/emoji:latest .
+	docker build --platform linux/amd64 -t hjcian/emoji:latest .
 	docker push hjcian/emoji:latest
 
 container:
@@ -54,5 +54,5 @@ container:
 #
 
 pack-and-serve:
-	npx webpack client/client.js -o client/bundle.js
-	serve client/
+	npx webpack --mode production -o dist/
+	serve dist/

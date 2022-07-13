@@ -3,6 +3,8 @@ k8s/
 proto/
 client/
 web-pb/
+src/
+dist/
 
 node_modules/
 package.json

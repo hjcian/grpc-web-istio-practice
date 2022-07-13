@@ -1,5 +1,5 @@
 syntax = "proto3";
-
+package web;
 option go_package = "github.com/hjcian/grpc-web-istio-practice/go-pb";
 
 service EmojiService {

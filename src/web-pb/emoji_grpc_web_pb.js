@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for 
+ * @fileoverview gRPC-Web generated client stub for web
  * @enhanceable
  * @public
  */
@@ -15,7 +15,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
-const proto = require('./emoji_pb.js');
+const proto = {};
+proto.web = require('./emoji_pb.js');
 
 /**
  * @param {string} hostname
@@ -25,7 +26,7 @@ const proto = require('./emoji_pb.js');
  * @struct
  * @final
  */
-proto.EmojiServiceClient =
+proto.web.EmojiServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -51,7 +52,7 @@ proto.EmojiServiceClient =
  * @struct
  * @final
  */
-proto.EmojiServicePromiseClient =
+proto.web.EmojiServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -72,39 +73,39 @@ proto.EmojiServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.EmojizeRequest,
- *   !proto.EmojizeReply>}
+ *   !proto.web.EmojizeRequest,
+ *   !proto.web.EmojizeReply>}
  */
 const methodDescriptor_EmojiService_Emojize = new grpc.web.MethodDescriptor(
-  '/EmojiService/Emojize',
+  '/web.EmojiService/Emojize',
   grpc.web.MethodType.UNARY,
-  proto.EmojizeRequest,
-  proto.EmojizeReply,
+  proto.web.EmojizeRequest,
+  proto.web.EmojizeReply,
   /**
-   * @param {!proto.EmojizeRequest} request
+   * @param {!proto.web.EmojizeRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.EmojizeReply.deserializeBinary
+  proto.web.EmojizeReply.deserializeBinary
 );
 
 
 /**
- * @param {!proto.EmojizeRequest} request The
+ * @param {!proto.web.EmojizeRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.EmojizeReply)}
+ * @param {function(?grpc.web.RpcError, ?proto.web.EmojizeReply)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.EmojizeReply>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.web.EmojizeReply>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.EmojiServiceClient.prototype.emojize =
+proto.web.EmojiServiceClient.prototype.emojize =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/EmojiService/Emojize',
+      '/web.EmojiService/Emojize',
       request,
       metadata || {},
       methodDescriptor_EmojiService_Emojize,
@@ -113,22 +114,22 @@ proto.EmojiServiceClient.prototype.emojize =
 
 
 /**
- * @param {!proto.EmojizeRequest} request The
+ * @param {!proto.web.EmojizeRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.EmojizeReply>}
+ * @return {!Promise<!proto.web.EmojizeReply>}
  *     Promise that resolves to the response
  */
-proto.EmojiServicePromiseClient.prototype.emojize =
+proto.web.EmojiServicePromiseClient.prototype.emojize =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/EmojiService/Emojize',
+      '/web.EmojiService/Emojize',
       request,
       metadata || {},
       methodDescriptor_EmojiService_Emojize);
 };
 
 
-module.exports = proto;
+module.exports = proto.web;
 

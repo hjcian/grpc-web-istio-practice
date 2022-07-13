@@ -35,7 +35,7 @@ func NewEmojiServiceClient(cc grpc.ClientConnInterface) EmojiServiceClient {
 
 func (c *emojiServiceClient) Emojize(ctx context.Context, in *EmojizeRequest, opts ...grpc.CallOption) (*EmojizeReply, error) {
 	out := new(EmojizeReply)
-	err := c.cc.Invoke(ctx, "/EmojiService/Emojize", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/web.EmojiService/Emojize", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func _EmojiService_Emojize_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/EmojiService/Emojize",
+		FullMethod: "/web.EmojiService/Emojize",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EmojiServiceServer).Emojize(ctx, req.(*EmojizeRequest))
@@ -90,7 +90,7 @@ func _EmojiService_Emojize_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var EmojiService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "EmojiService",
+	ServiceName: "web.EmojiService",
 	HandlerType: (*EmojiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
